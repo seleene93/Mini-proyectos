@@ -262,20 +262,22 @@ function restart() {
 }
 
 function easterEgg() {
-  // función oculta que se activará cuando:
-  update(locations[7]);
+  // función oculta que se activará cuando: el usuario mate al monstruo y elija el último boton de Go to Town Square
+  update(locations[7]); // ultima ubicación (nuestro EasterEgg)
 }
 
 function pick(guess) {
   const numbers = [];
 
   while (numbers.length < 10) {
+    // mientras la logitud del array de números sea menor de 10, se pusheará en éste un numero aleatorio entre 0(incluye) y 11(excluye) es lo mismo que 0 y 10.
     numbers.push(Math.floor(Math.random() * 11));
   }
 
-  text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
+  text.innerText = "You picked " + guess + ". Here are the random numbers:\n"; // muestra una introducción para los números aleatorios generados.
 
   for (let i = 0; i < 10; i++) {
+    // itera sobre los números generados
     text.innerText += numbers[i] + "\n";
   }
 
@@ -300,3 +302,29 @@ function pickTwo() {
 function pickEight() {
   pick(8);
 }
+
+//  Función para estilar las letras según si está marcado el checkbox
+
+const checkbox = document.querySelector(".check");
+const englishText = document.querySelector(".en");
+const spanishText = document.querySelector(".es");
+
+checkbox.addEventListener("click", function () {
+  if (this.checked) {
+    spanishText.style.background =
+      "linear-gradient(to right, red, yellow, red) no-repeat";
+    spanishText.style.backgroundClip = "text";
+    spanishText.style.webkitBackgroundClip = "text";
+    spanishText.style.color = "transparent";
+    englishText.style.background = "none";
+    englishText.style.color = "white";
+  } else {
+    englishText.style.background =
+      "linear-gradient(to right, rgb(0, 102, 255), white, red) no-repeat";
+    englishText.style.backgroundClip = "text";
+    englishText.style.webkitBackgroundClip = "text";
+    englishText.style.color = "transparent";
+    spanishText.style.background = "none";
+    spanishText.style.color = "white";
+  }
+});
